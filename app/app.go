@@ -1,13 +1,26 @@
 package app
 
 import (
-	"fmt"
+	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 )
 
-func StartServer() {
-	fmt.Println("Hello world!")
+func StartServer( /*db *sql.DB*/ ) {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading .env file %v\n", err)
+	}
+
+	PORT := os.Getenv("PORT")
+
 	app := fiber.New()
-	app.Listen(":3000")
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("I'm a GET request!")
+	})
+
+	app.Listen(PORT)
 }
