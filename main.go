@@ -36,7 +36,9 @@ import (
 	"log"
 
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 	"main.go/app"
+	"main.go/database"
 )
 
 func main() {
@@ -45,6 +47,6 @@ func main() {
 		log.Fatalf("Error loading .env file %v\n", err)
 	}
 
-	//db := database.StartDatabase(false)
-	app.StartServer()
+	db := database.StartDatabase(false)
+	app.StartServer(db)
 }

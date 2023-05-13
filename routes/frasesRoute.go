@@ -1,11 +1,13 @@
 package routes
 
 import (
+	"database/sql"
+
 	"github.com/gofiber/fiber/v2"
 	"main.go/handler"
 )
 
-func FrasesRoute(frases fiber.Router) {
+func FrasesRoute(frases fiber.Router, db *sql.DB) {
 
-	frases.Get("/", handler.GetFrasesHandler())
+	frases.Get("/", handler.GetFrasesHandler(db))
 }
