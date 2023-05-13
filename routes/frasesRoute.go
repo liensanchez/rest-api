@@ -1,10 +1,11 @@
 package routes
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	"main.go/handler"
+)
 
 func FrasesRoute(frases fiber.Router) {
 
-	frases.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("I'm a GET request!")
-	})
+	frases.Get("/", handler.GetFrasesHandler())
 }
