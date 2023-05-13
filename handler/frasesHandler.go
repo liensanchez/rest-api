@@ -2,6 +2,8 @@ package handler
 
 import (
 	"database/sql"
+	"fmt"
+	"math/rand"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -11,14 +13,19 @@ type Test struct {
 }
 
 func GetFrasesHandler(db *sql.DB) fiber.Handler {
+	minJ := 1
+	maxJ := 86
+	randomNum := rand.Intn(maxJ-minJ+1) + minJ
+
 	return func(c *fiber.Ctx) error {
-		rows, err := db.Query("SELECT text_column FROM frases")
+		fmt.Println(randomNum)
+		rows, err := db.Query("SELECT frases_column FROM frases WHERE id = $1;", randomNum)
 		if err != nil {
 			return err
 		}
 		defer rows.Close()
 
-		var response []Test // replace YourStruct with the name of your struct
+		var response []Test
 
 		for rows.Next() {
 			var text string
@@ -26,7 +33,7 @@ func GetFrasesHandler(db *sql.DB) fiber.Handler {
 			if err != nil {
 				return err
 			}
-			response = append(response, Test{text}) // replace YourStruct with the name of your struct
+			response = append(response, Test{text})
 		}
 
 		return c.JSON(response)
