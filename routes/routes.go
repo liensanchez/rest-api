@@ -12,6 +12,14 @@ func Routes(app *fiber.App, db *sql.DB) {
 
 	frases := api.Group("/frases")
 
+	chistes := api.Group("/chistes")
+
+	refranes := api.Group("/refranes")
+
 	FrasesRoute(frases, db)
+
+	ChistesRoute(chistes, db)
+
+	RefranesRoute(refranes, db)
 
 }
