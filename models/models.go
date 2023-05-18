@@ -1,5 +1,5 @@
 package models
 
-type Frases struct {
+type Result struct {
 	FraseGraciosa string `json:"frase"`
 }
