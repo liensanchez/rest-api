@@ -1,5 +1,5 @@
 package models
 
 type Result struct {
-	FraseGraciosa string `json:"frase"`
+	FraseGraciosa string `json:"text"`
 }
