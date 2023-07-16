@@ -20,5 +20,5 @@ func StartServer(db *sql.DB) {
 		port = "3010"
 	}
 
-	app.Listen("0.0.0.0:" + port)
+	app.Listen(":" + port)
 }
