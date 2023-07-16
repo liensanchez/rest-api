@@ -2,6 +2,7 @@ package app
 
 import (
 	"database/sql"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"main.go/routes"
@@ -13,5 +14,11 @@ func StartServer(db *sql.DB) {
 
 	routes.Routes(app, db)
 
-	app.Listen(":3010")
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "3010"
+	}
+
+	app.Listen("0.0.0.0:" + port)
 }
