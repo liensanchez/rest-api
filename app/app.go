@@ -15,10 +15,8 @@ func StartServer(db *sql.DB) {
 	routes.Routes(app, db)
 
 	port := os.Getenv("PORT")
-
 	if port == "" {
-		port = "3010"
+		port = "3000"
 	}
-
 	app.Listen(":" + port)
 }
