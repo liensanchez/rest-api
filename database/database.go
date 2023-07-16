@@ -15,6 +15,22 @@ func StartDatabase(force bool) *sql.DB {
 	PASSWORD := os.Getenv("PASSWORD")
 	DBNAME := os.Getenv("DBNAME")
 
+	if HOST == "" {
+		HOST = "localhost"
+	}
+	if PORT_DB == "" {
+		PORT_DB = "5432"
+	}
+	if USER == "" {
+		USER = "postgres"
+	}
+	if PASSWORD == "" {
+		PASSWORD = "admin2023"
+	}
+	if DBNAME == "" {
+		DBNAME = "rest-api"
+	}
+
 	//ingresamos con las constantes
 	postgresqlDbInfo := fmt.Sprintf("host=%s port=%s user=%s "+
 		"password=%s dbname=%s sslmode=disable",
