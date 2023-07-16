@@ -33,12 +33,19 @@ package main
 */
 
 import (
+	"log"
+
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"main.go/app"
 	"main.go/database"
 )
 
 func main() {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading .env file %v\n", err)
+	}
 
 	db := database.StartDatabase(false)
 	app.StartServer(db)
