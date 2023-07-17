@@ -20,6 +20,12 @@ This documentation describes the available endpoints in the GitHub REST API for 
 
 ## API Reference
 
+### Base endpoint
+
+```http
+  https://rest-api-production-739c.up.railway.app/
+```
+
 ### Get frases
 
 
