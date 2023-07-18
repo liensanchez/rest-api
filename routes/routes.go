@@ -7,11 +7,6 @@ import (
 )
 
 func Routes(app *fiber.App, db *sql.DB) {
-
-	app.Get("/*", func(c *fiber.Ctx) error {
-		return c.SendString("Go to https://github.com/liensanchez/rest-api for documentation")
-	})
-
 	api := app.Group("/api")
 
 	frases := api.Group("/frases")
@@ -26,4 +21,7 @@ func Routes(app *fiber.App, db *sql.DB) {
 
 	RefranesRoute(refranes, db)
 
+	app.Get("/*", func(c *fiber.Ctx) error {
+		return c.SendString("Go to https://github.com/liensanchez/rest-api for documentation")
+	})
 }
